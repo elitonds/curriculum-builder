@@ -1,4 +1,4 @@
-import { Row, Input, DatePicker } from "antd";
+import { Row, Input, DatePicker, Collapse } from "antd";
 import { useState } from "react";
 import { Grid } from "../../atoms/custom-col/custom-col";
 import { ProfessionalDTO } from "./professional.dto";
@@ -9,6 +9,7 @@ interface EducationCardProps {
 
 const EducationCard: React.FC<EducationCardProps> = (props) => {
   const { TextArea } = Input;
+  const { Panel } = Collapse;
   const { RangePicker } = DatePicker;
 
   const { data } = props;
@@ -18,48 +19,56 @@ const EducationCard: React.FC<EducationCardProps> = (props) => {
   const [description, setDescription] = useState(data?.description);
 
   return (
-    <Row style={{marginTop: '10px'}}>
-      <Grid span={12}>
-        <Input
-          id="jobTitle"
-          placeholder="Job title"
-          value={jobTitle}
-          onChange={(e) => setJobTitle(e.target.value)}
-        />
-      </Grid>
-      <Grid span={12}>
-        <Input
-          id="employer"
-          placeholder="Employer"
-          value={employer}
-          onChange={(e) => setEmployer(e.target.value)}
-        />
-      </Grid>
-      <Grid span={12}>
-        <RangePicker
-          id="start-end-date"
-          picker="month"
-          placeholder={["Start date", "End date"]}
-        />
-      </Grid>
-      <Grid span={12}>
-        <Input
-          id="city"
-          placeholder="City"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-      </Grid>
-      <Grid span={24}>
-        <TextArea
-          rows={4}
-          id="description"
-          value={description}
-          placeholder="Description"
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </Grid>
-    </Row>
+    <Collapse>
+      <Panel
+        header={`${data.jobTitle} - ${data.employer}`}
+        key={`panel-${data.jobTitle}-${data.employer}`}
+        style={{ marginBottom: "10px" }}
+      >
+        <Row style={{ marginTop: "10px" }}>
+          <Grid span={12}>
+            <Input
+              id="jobTitle"
+              placeholder="Job title"
+              value={jobTitle}
+              onChange={(e) => setJobTitle(e.target.value)}
+            />
+          </Grid>
+          <Grid span={12}>
+            <Input
+              id="employer"
+              placeholder="Employer"
+              value={employer}
+              onChange={(e) => setEmployer(e.target.value)}
+            />
+          </Grid>
+          <Grid span={12}>
+            <RangePicker
+              id="start-end-date"
+              picker="month"
+              placeholder={["Start date", "End date"]}
+            />
+          </Grid>
+          <Grid span={12}>
+            <Input
+              id="city"
+              placeholder="City"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </Grid>
+          <Grid span={24}>
+            <TextArea
+              rows={4}
+              id="description"
+              value={description}
+              placeholder="Description"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </Grid>
+        </Row>
+      </Panel>
+    </Collapse>
   );
 };
 
