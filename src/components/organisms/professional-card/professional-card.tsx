@@ -1,10 +1,10 @@
 import { Row, Input, DatePicker } from "antd";
 import { useState } from "react";
 import { Grid } from "../../atoms/custom-col/custom-col";
-import { EducationDTO } from "./education.dto";
+import { ProfessionalDTO } from "./professional.dto";
 
 interface EducationCardProps {
-  data: EducationDTO;
+  data: ProfessionalDTO;
 }
 
 const EducationCard: React.FC<EducationCardProps> = (props) => {
@@ -12,8 +12,8 @@ const EducationCard: React.FC<EducationCardProps> = (props) => {
   const { RangePicker } = DatePicker;
 
   const { data } = props;
-  const [school, setSchool] = useState(data?.school);
-  const [degree, setDegree] = useState(data?.degree);
+  const [jobTitle, setJobTitle] = useState(data?.jobTitle);
+  const [employer, setEmployer] = useState(data?.employer);
   const [city, setCity] = useState(data?.city);
   const [description, setDescription] = useState(data?.description);
 
@@ -21,18 +21,18 @@ const EducationCard: React.FC<EducationCardProps> = (props) => {
     <Row style={{marginTop: '10px'}}>
       <Grid span={12}>
         <Input
-          id="school"
-          placeholder="School"
-          value={school}
-          onChange={(e) => setSchool(e.target.value)}
+          id="jobTitle"
+          placeholder="Job title"
+          value={jobTitle}
+          onChange={(e) => setJobTitle(e.target.value)}
         />
       </Grid>
       <Grid span={12}>
         <Input
-          id="degree"
-          placeholder="Degree"
-          value={degree}
-          onChange={(e) => setDegree(e.target.value)}
+          id="employer"
+          placeholder="Employer"
+          value={employer}
+          onChange={(e) => setEmployer(e.target.value)}
         />
       </Grid>
       <Grid span={12}>
